@@ -1,5 +1,21 @@
+import { useState } from "react";
+import { List } from "./List";
+
 function App() {
-  return <div>ゼロから始めるReact入門</div>;
+  const [description, setDescription] = useState("クリック前の表示");
+
+  const changeDescription = () => {
+    // 追加
+    setDescription("クリック後の表示です。");
+  };
+
+  return (
+    <div>
+      {description}
+      <List title="取り扱い言語一覧" />
+      <button onClick={changeDescription}>ボタン</button> // 追加
+    </div>
+  );
 }
 
 export default App;
