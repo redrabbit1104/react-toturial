@@ -1,8 +1,9 @@
-import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { List } from "./List";
 import { Form } from "./Form";
+import styled from "styled-components";
 import { getLanguages } from "./const/languages";
+import { withLoading } from "./hoc/withLoading";
 
 const Header = styled.header`
   display: flex;
@@ -24,30 +25,13 @@ const HeaderLi = styled.li`
   border-bottom: ${(props) => (props.focused ? "2px solid #F44336" : "none")};
 `;
 
-function App() {
-  // const [description, setDescription] = useState("クリック前の表示");
+function App({ data }) {
   const [tab, setTab] = useState("list");
-  const [langs, setLangs] = useState([]);
-
-  useEffect(() => {
-    console.log("App.js:useEffect");
-    fetchLanguages();
-  }, []);
-
-  const fetchLanguages = async () => {
-    const languages = await getLanguages();
-    setLangs(languages);
-  };
-
+  const [langs, setLangs] = useState(data);
   const addLang = (lang) => {
-    // 追加
     setLangs([...langs, lang]);
     setTab("list");
   };
-  // const changeDescription = () => {
-  //   // 追加
-  //   setDescription("クリック後の表示です。");
-  // };
 
   return (
     <div>
@@ -66,4 +50,4 @@ function App() {
   );
 }
 
-export default App;
+export default withLoading(App, getLanguages);
