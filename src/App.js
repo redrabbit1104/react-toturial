@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { List } from "./List";
 import { Form } from "./Form";
 import styled from "styled-components";
@@ -17,7 +17,6 @@ const HeaderUl = styled.ul`
   margin: 0;
   padding: 0;
 `;
-
 const HeaderLi = styled.li`
   list-style: none;
   padding: 4px 12px;
@@ -28,6 +27,7 @@ const HeaderLi = styled.li`
 function App({ data }) {
   const [tab, setTab] = useState("list");
   const [langs, setLangs] = useState(data);
+
   const addLang = (lang) => {
     setLangs([...langs, lang]);
     setTab("list");
@@ -37,10 +37,10 @@ function App({ data }) {
     <div>
       <Header>
         <HeaderUl>
-          <HeaderLi focused={tab == "list"} onClick={() => setTab("list")}>
+          <HeaderLi focused={tab === "list"} onClick={() => setTab("list")}>
             リスト
           </HeaderLi>
-          <HeaderLi focused={tab == "form"} onClick={() => setTab("form")}>
+          <HeaderLi focused={tab === "form"} onClick={() => setTab("form")}>
             フォーム
           </HeaderLi>
         </HeaderUl>
