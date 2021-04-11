@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Button } from "./components/button";
 import { TabBodyContainer } from "./components/tab-body-container";
 import { FormModal } from "./FormModal";
+import { Hint } from "./Hint";
 
 const Label = styled.label`
   display: flex;
@@ -47,6 +48,7 @@ export class Form extends React.Component {
               value={text}
               onChange={(e) => this.setState({ text: e.target.value })}
             />
+            <Hint />
             <ButtonContainer>
               <FormButton>追加</FormButton>
             </ButtonContainer>
